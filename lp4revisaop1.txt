@@ -1,0 +1,251 @@
+
+Qual a rota da API deve ser usada para requisitar todos os produtos?
+
+Ação: GET
+localhost:8000/api/produtos
+
+-----------------
+
+Qual função (ou método) do controller é acionada pela rota acima?
+
+index
+
+-----------------
+
+Qual instrução a função index utilizaria para obter todos os produtos cadastrados?
+
+public function index()
+{
+  $ps = Produto::all();
+  return $ps  
+}
+
+-----------------
+
+Como ler/recuperar do banco de dados todos os produtos com preço 
+maior que 1000 reais
+
+$pmaior1000 = Produto::where("preco",">",1000)->get();
+
+-----------------
+
+Qual a rota para cadastrar um novo Produto?
+
+Ação: POST
+URL: localhost:8000/api/produtos
+
+Qual função do controller é acionada?
+
+função: store
+
+React tem que enviar para API Json do novo produto
+
+-----------------
+
+Qual a rota para atualizar Produto?
+
+Ação: PUT 
+URL: localhost:8000/api/produtos/53
+
+Qual função do controller é acionada?
+
+função: update
+
+React tem que enviar para API Json com os novos dados do produto
+
+-----------------
+
+Qual a rota para excluir Produto?
+
+Ação: DELETE
+URL: localhost:8000/api/produtos/53
+
+Qual função do controller é acionada?
+
+função: destroy
+
+-----------------
+ 
+Qual a finalidade das migrações?
+
+Modificar a estrutura do banco de dados, exemplo: criar tabela, eliminar tabela,
+modificar tabela, configurar restrições (constraint: primary key, foreign key,
+índice, unique, check).
+
+Quais funções existem nas migrações e para que servem:
+
+UP - faz alteração estrutural no BD
+DOWN - desfaz a alteração.
+
+-----------------
+
+Qual significado dos códigos de status:
+
+2xx - sucesso, operação realizada  
+
+4xx - erro devido a dados inválidos enviados pelo cliente
+
+5xx - erro interno a aplicação 
+
+-----------------
+
+Javascript
+
+const obj = {id:123,nome:"Joao",notas:[8,7,9],calc:function(a){return a+1}} 
+
+Como executar a função com valor 30 no parâmetro?
+
+console.log(   obj.calc(30)   )  
+
+Outra forma de fazer.
+
+const { calc:fx } = obj
+console.log(  fx(30)  )
+
+------------------
+
+function(a,b){return a+b}
+
+(a,b) => {return a+b}
+
+(a,b) => a+b
+
+Outro exemplo:
+
+c => c+1
+
+---------------------
+
+const a = {x:10,y:30}
+const b = {...a,z:50,x:20}
+
+O que está armazenado em b?
+
+Resp: {y:30,z:50,x:20}
+
+----------------------
+
+const a = {x:10,y:30}
+const b = {a,z:50,x:20}
+
+Qual valor em b?
+
+Resp.: {a:{x:10,y:30},z:50,x:20}
+
+-----------------------
+
+const nomes = ["Joao","Maria","Carlos"]
+
+const cn = nomes.map(  (nome)=>nome.length  )
+
+O que está armazenado em cn?
+
+cn: [ 4  ,  5  ,  6  ]
+
+------------------------
+
+Dado o componente react abaixo, quantas vezes ele é 
+renderizado (redesenhado - seu código executado)?
+
+export default function Teste()
+{
+  const g = 0
+  const [numero,setNumero] = useState(0)
+  return(
+     <h1>......
+     ........
+  )
+}
+
+Para (qual a finalidade) que usar um useState?
+
+Armazenamento de dados. Preserva os dados enquanto o componente
+permanecer montado.
+
+A instrução abaixo é correta, considerando o useState acima?
+	numero = numero + 1
+Resp.: Incorreta, não é possível alterar uma constante
+
+Como fazer então?
+
+	setNumero(numero+1)
+
+---------------
+
+Para que serve useRef?
+
+Por exemplo, para armazenar os dados digitados pelo usuário
+em um formulário. ARMAZENAMENTO DE DADOS
+
+Qual é a diferença principal entre useState e useRef?
+
+Mudanças no valor do useState causam nova renderização do componente
+
+Mudanças no useRef não causam renderização.
+
+---------------------------
+
+useEffect( função, [] )
+
+Quando a função do useEffect é executada?
+
+Apenas uma vez apenas na montagem do compente em memória.
+
+-----------------------------
+
+useEffect( função, [a,b,c] )
+
+Quando a função do useEffect é executada?
+
+Uma vez na montagem do componente e em cada mudança de a, b ou c
+
+-----------------------------
+
+Para que serve o axios?
+
+Resp.: Para interação com a API.
+
+suponha o json abaixo:
+
+const p = {nome:"Produto 100", preco: 104.87}
+
+Como cadastrar este novo produto no sistema via API usando o axios?
+
+	await axios.post("localhost:8000/api/produtos",p)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

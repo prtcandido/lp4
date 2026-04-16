@@ -1,0 +1,23 @@
+- Fazer o Fork no GitHub e clonar
+git clone https://github.com/seu_usuario/expoproj.git
+
+-Ou atualizar o Fork
+
+-Fazer commit de suas mudanças
+git add .
+git commit -m "minhas mudanças"
+
+-Ver remotos
+git remote -v
+
+-Configurar remoto apontando para repositório professor
+git remote add upstream https://github.com/prtcandido/expoproj.git
+
+-Baixar e mesclar mudanças
+git pull upstream main
+
+-Instalar dependências (pacotes/bibliotecas) - executar na pasta expoproj
+npm install
+
+-Executar a aplicação
+npx expo start

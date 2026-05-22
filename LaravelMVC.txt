@@ -1,0 +1,58 @@
+Maquina Virtual "Win10PauloCandido"
+
+Criar pasta c:\laravelproj
+
+GitHub.com/prtcandido/lp4
+
+CRUDSimplesP1.pdf
+
+- Abrir pasta com GIT BASH. 
+  Localizar pasta com Explorador de arquivos
+  Selecionar GIT BASH no menu botão direito
+
+- Criar projeto Laravel
+
+composer create-project --prefer-dist laravel/laravel crudsimples
+
+- Entrar na pasta do projeto
+
+cd crudsimples
+
+- Testar o projeto criado
+
+No prompt, executar: php artisan serve
+No navegador, acessar: localhost:8000
+
+- Criar o BD
+  - Abrir Xampp Control Panel
+  - Pressionar START Apache e Mysql
+  - Pressionar o botão ADMIN do Mysql
+  - Criar BD com nome: crudsimples
+
+- Abrir no VSC, digitando no terminal:
+  code .
+
+- Na pasta Raiz, encontrar e abrir o arquivo: .env
+
+- Iniciar o CRUD de Computadores
+
+- No terminal (BASH) c:\crudsimples
+  php artisan make:model Computador --controller --resource --migration 
+
+- Programar o model Computador
+
+- Programar e executar a migration
+  - Executar todas as migrações pendentes
+  php artisan migrate
+
+- Popular a tabela computadors
+  Definir dados no DatabaseSeeder
+
+- Executar o Seeder
+  php artisan db:seed
+
+
+
+  
+
+

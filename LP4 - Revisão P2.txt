@@ -1,0 +1,123 @@
+LP4 - Revisão P2
+
+Sobre projetos Laravel do tipo MVC.
+
+1) Em qual arquivo de configuração do projeto são configurados os parâmetros de conexão com banco de dados.
+
+.env
+
+2) Defina "Model", "View" e "Controller".
+
+Model: classes de objetos com os dados do sistema e regras de negócio. Objetos gravados no banco de dados.
+
+View: gerar o HTML a ser retornado para o cliente/usuário (apresentação)
+
+Controller: recebe as requisições HTTP do cliente
+
+3) Qual a finalidade das migrações e como elas são executadas?
+
+Migração é um programa PHP cujo objetivo é alterar a estrutura do banco de dados (exemplo: criar tabela, adicionar coluna a tabela existente)
+
+Execução no terminal:
+php artisan migrate
+
+Executa todas as migrações pendentes.
+
+Cenário: Necessário criar tabela funcionarios(id,nome,endereco).
+
+a) Criar uma migração
+   php artisan make:migration CriaTabFunc --create=funcionarios
+
+b) Edita o arquivo database/migration/CriaTabFunc e define as colunas
+
+       public function up(): void
+    {
+        Schema::create('funcionarios', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->string('endereco');
+            $table->timestamps();
+        });
+    }
+
+c) Executar a migração.
+   php artisan migrate
+
+d) Para adicionar coluna faltante, criar nova migração
+   php artisan make:migration ColunaQueFaltou --table=funcionários
+
+e) Codifica nova migração
+    public function up(): void
+    {
+        Schema::table('funcionarios', function (Blueprint $table) {
+            $table->date('data_nascimento');
+        });
+    }
+
+f) executo a migration criada
+php artisan migrate
+
+4) Qual a finalidade dos Seeders e como são executados?
+
+Finalidade: inserir dados nas tabelas do banco de dados para testes
+Como executar: php artisan db:seed
+
+5) Em qual arquivo são definidas as rotas para aplicações WEB MVC?
+
+Arquivo: routes/web.php
+
+6) Qual o objetivo da instrução a seguir colocado no arquivo web.php
+
+Route::resource( url , controller )
+
+Exemplo:
+Route::resource( /funcionarios , FuncionarioController::class );
+
+Resp.: Defini as 7 rotas necessárias para o CRUD (manutenção de cadastro)
+
+7) Considerando CRUD de computador, quais funções do controller são usadas para implementação da funcionalidade para cadastrar um novo computador e qual a finalidade de cada uma?
+
+INSERT
+======
+create: retorna um formulário com campos não preenchidos
+store: os dados digitados pelo usuário no formulários são enviados para a função store para gravação no banco de dados. 
+
+UPDATE
+======
+edit: retorna formulário preenchido com os dados do computador em edição
+update: atualiza no banco de dados o objeto editado
+
+DELETE
+======
+show: retorna os dados do objeto computador a ser excluído solicitando confirmação
+destroy: exclui o objeto do banco de dados
+
+CONSULTA TODOS
+==============
+index: retorna todos os computadores cadastrados
+
+8) O que é atribuído as variáveis a seguir?
+
+$x = Cliente::all();
+coleção com todos os objetos do tipo Cliente cadastrados no banco de dados
+
+$y = Funcionario::where('sexo','=','F')->get();
+coleção (por usar get) com todas as funcionárias
+
+$z = Funcionario::where('sexo','=','F')->first();
+objeto funcionária que é a primeira encontrada
+
+9) Qual componente usa código como o a seguir e qual o significado da 1a linha?
+
+@extend('base')
+@section('conteudo')
+  <h2>Teste</h2>
+@endsection 
+
+Resp.: Código usado em uma View. Na primeira linha temos o nome da view pai cujo HTML é herdado pela filha.
+
+10) Qual a finalidade do componente criado pelo comando a seguir?
+
+php artisan make:request NomeRequest
+
+A finalidade é validar se os dados introduzidos pelo usuário nos formulários são corretos. Neste componente são definidas as regras de validação para cada campo do formulário.
